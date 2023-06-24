@@ -1,0 +1,24 @@
+.backgroundActive {
+    background: linear-gradient(to right, #c70101, #720101);
+    color: white;
+    
+}
+
+.backgroundInactive {
+    background-color: #b8b8b8;
+    color: black;
+   
+}
+
+.button {
+    border-radius: 100px;
+    font-weight: bold;
+    border-width: 0px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+
+    padding-left: 3%;
+    padding-right: 3%;
+
+    font-size: 90%;
+}
