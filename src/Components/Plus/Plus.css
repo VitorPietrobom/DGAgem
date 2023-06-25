@@ -1,0 +1,11 @@
+.button {
+    padding: 2%;
+    border-radius: 10px;
+    background-color: #ca0000;
+}
+
+.white-plus-icon{
+    fill: white;
+    font-size: 300%
+
+}
