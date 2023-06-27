@@ -2,9 +2,13 @@ import { Grid } from "@mui/material";
 import { ReactElement } from "react";
 import { TripCard } from "../../components/trip-card/trip-card";
 import { Plus } from "../../components/Plus/Plus";
+<<<<<<< refs/remotes/origin/main:src/Components/home/home.tsx
 import { useEffect, useState } from "react";
 import NewTripForm from "../../components/NewTripForm/NewTripForm"
 import { isOpaqueType } from "@babel/types";
+=======
+import CssBaseline from '@mui/material/CssBaseline';
+>>>>>>> Add routing and correct folders:src/pages/Home/home.tsx
 
 
 export const Home = (): ReactElement => {
@@ -20,6 +24,7 @@ export const Home = (): ReactElement => {
       };
 
     return (
+<<<<<<< refs/remotes/origin/main:src/Components/home/home.tsx
         <>
             
             {addNewForm && <NewTripForm
@@ -27,6 +32,10 @@ export const Home = (): ReactElement => {
                 onClose={handleCloseForm}
             />}
             
+=======
+        <div>
+            <CssBaseline/>
+>>>>>>> Add routing and correct folders:src/pages/Home/home.tsx
             <Grid 
                 sx={{backgroundColor: "white"}}
                 container
@@ -57,6 +66,6 @@ export const Home = (): ReactElement => {
                     )
                 })}
             </Grid>
-        </>
+        </div>
     )
 }
