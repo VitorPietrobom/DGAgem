@@ -2,14 +2,12 @@ import { Grid } from "@mui/material";
 import { ReactElement } from "react";
 import { TripCard } from "../../components/trip-card/trip-card";
 import { Plus } from "../../components/Plus/Plus";
-<<<<<<< refs/remotes/origin/main:src/Components/home/home.tsx
 import { useEffect, useState } from "react";
 import NewTripForm from "../../components/NewTripForm/NewTripForm"
 import { isOpaqueType } from "@babel/types";
-=======
 import CssBaseline from '@mui/material/CssBaseline';
->>>>>>> Add routing and correct folders:src/pages/Home/home.tsx
-
+import titulo from '../../assets/titulo.png';
+import './home.css';
 
 export const Home = (): ReactElement => {
 
@@ -24,18 +22,17 @@ export const Home = (): ReactElement => {
       };
 
     return (
-<<<<<<< refs/remotes/origin/main:src/Components/home/home.tsx
-        <>
+        <div className="home-container">
             
             {addNewForm && <NewTripForm
                 isOpened={addNewForm}
                 onClose={handleCloseForm}
             />}
             
-=======
-        <div>
+        
             <CssBaseline/>
->>>>>>> Add routing and correct folders:src/pages/Home/home.tsx
+            <img src={titulo} alt='title'/>
+            <h1>Minhas Viagens</h1>
             <Grid 
                 sx={{backgroundColor: "white"}}
                 container
