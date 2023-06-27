@@ -1,13 +1,31 @@
 import { Grid } from "@mui/material";
 import { ReactElement } from "react";
-import { TripCard } from "../trip-card/trip-card";
-import { Plus } from "../Plus/Plus";
+import { TripCard } from "../../Components/trip-card/trip-card";
+import { Plus } from "../../Components/Plus/Plus";
+import { useEffect, useState } from "react";
+import NewTripForm from "../NewTripForm/NewTripForm"
+import { isOpaqueType } from "@babel/types";
 
 
 export const Home = (): ReactElement => {
+
+    const [addNewForm, setAddNewForm] = useState(false);
+
+    const handleCloseForm = () => {
+        setAddNewForm(false);
+      };
+    
+    const addNewFormClick = () => {
+        setAddNewForm(true);
+      };
+
     return (
         <>
             
+            {addNewForm && <NewTripForm
+                isOpened={addNewForm}
+                onClose={handleCloseForm}
+            />}
             
             <Grid 
                 sx={{backgroundColor: "white"}}
@@ -18,7 +36,7 @@ export const Home = (): ReactElement => {
                 alignItems={'center'}
                 >
                 <Grid item key={0} >
-                    <Plus onClick={console.log('test')}/>
+                    <Plus onClick={addNewFormClick}/>
                 </Grid>
                 
                 {Array(3).fill(null).map((_, index) => {
