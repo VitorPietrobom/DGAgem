@@ -8,6 +8,8 @@ import { isOpaqueType } from "@babel/types";
 import CssBaseline from '@mui/material/CssBaseline';
 import titulo from '../../assets/titulo.png';
 import './home.css';
+import { Stack } from "@mui/system";
+import ProfileDropdown from "../../components/ProfileDropdown/ProfileDropdown ";
 
 export const Home = (): ReactElement => {
 
@@ -31,7 +33,15 @@ export const Home = (): ReactElement => {
             
         
             <CssBaseline/>
-            <img src={titulo} alt='title'/>
+            <Stack direction="row" spacing={{ xs: 1, sm: 2, md: 4 }}>
+                <div className="logo">
+                    <img src={titulo} alt='title'/>
+                </div>
+                <div className="profile">
+                    <ProfileDropdown onClick={console.log("Profile Click")}/>
+                </div>
+            </Stack>
+            
             <h1>Minhas Viagens</h1>
             <Grid 
                 sx={{backgroundColor: "white"}}

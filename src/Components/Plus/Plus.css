@@ -2,6 +2,32 @@
     padding: 2%;
     border-radius: 10px;
     background-color: #ca0000;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+/* Media query for screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    .button {
+        height: 400px;
+        width: 40px;
+    }
+}
+
+/* Media query for screens between 600px and 1200px */
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+    .button {
+        height: 45px;
+        width: 45px;
+    }
+}
+
+/* Media query for screens larger than 1200px */
+@media screen and (min-width: 1201px) {
+    .button {
+        height: 50px;
+        width: 50px;
+    }
 }
 
 .white-plus-icon{
