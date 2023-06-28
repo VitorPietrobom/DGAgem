@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
 import { ReactElement } from "react";
-import { TripCard } from "../../Components/trip-card/trip-card";
-import { Plus } from "../../Components/Plus/Plus";
+import { TripCard } from "../../components/trip-card/trip-card";
+import { Plus } from "../../components/Plus/Plus";
 import { useEffect, useState } from "react";
-import NewTripForm from "../NewTripForm/NewTripForm"
+import NewTripForm from "../../components/NewTripForm/NewTripForm"
 import { isOpaqueType } from "@babel/types";
 
 

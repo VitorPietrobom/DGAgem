@@ -2,7 +2,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ReactElement, useEffect, useState } from 'react';
 import { Theme } from '@mui/material/styles/createTheme';
-import { Home } from './Components/home/home';
+import { Home } from './components/home/home';
 
 const getThemePallete = (isOnDarkMode: boolean): Theme => {
   return createTheme({
