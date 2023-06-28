@@ -1,10 +1,10 @@
 import { Backdrop, Box, ButtonProps, Card, CardContent, CardMedia, Container, Divider, Grid, IconButton, Typography, styled } from "@mui/material";
 import { ReactElement } from "react";
-import { ExpandedTripCardProps } from "./types";
+import { ExpandedTripCardProps } from "../../components/expanded-trip-card/types";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { common, grey } from '@mui/material/colors';
-import { PrimaryButton } from "../primary-button/primary-button";
-import { InformationStepper } from "../information-stepper/information-stepper";
+import { PrimaryButton } from "../../components/button-styles/primary-button";
+import { InformationStepper } from "../../components/information-stepper/information-stepper";
 
 const BackButton = styled(IconButton)<ButtonProps>(({ theme }) => ({
     color: "black",
