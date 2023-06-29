@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
-import { Backdrop, Box, ButtonProps, Card, Button, CardContent, CardMedia, CardActions, Container, Divider, Grid, IconButton, Typography, styled, TextField} from "@mui/material";
+import { Backdrop, Box, Card, Container, Divider, Grid, Typography, TextField} from "@mui/material";
 import { PrimaryButton } from "../button-styles/primary-button";
 import { OptionsButton } from "../button-styles/options-button";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
-import { common, grey } from '@mui/material/colors';
 import { SecondaryButton } from '../button-styles/secondary-button';
+import { collection, addDoc, doc } from "firebase/firestore";
 import './NewTripForm.css'
+import { db } from '../../firebase';
 
 const NewTripForm = ({isOpened, onClose}) => {
+ 
+    const addFormFirebase = async () => {
+        try {
+            const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
+            const docRef = await addDoc(collection(userRef, "requests"),formData);// db.collection("users").doc("57Lx42AzPp8eAn2p8fSE").collection("requests").doc(formData.destination).set();
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    };
+
+
   const [formData, setFormData] = useState({
     destination: '',
-    products: []
+    products: [],
+    savedForLater: false,
   });
 
   const handleChange = (e) => {
@@ -38,14 +51,15 @@ const NewTripForm = ({isOpened, onClose}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    addFormFirebase();
     console.log(formData);
     onClose()
   };
 
   const handleSaveAndClose = (e) => {
     e.preventDefault();
-    // Handle save form logic here
+    formData.savedForLater = true;
+    addFormFirebase();
     console.log(formData);
     onClose()
   };
@@ -75,7 +89,7 @@ const NewTripForm = ({isOpened, onClose}) => {
                 <Container m={2} maxWidth="md" className="form-field">
                 <div style={{ display: 'grid', gap: '16px' }}>
                     <Typography variant="subtitle1">Para onde será sua viagem?</Typography>
-                    <TextField label="Destino" variant="standard" InputProps={{ underline: true }}          
+                    <TextField label="Destino" variant="standard" InputProps={{ underline: "true" }}          
                     type="text"
                     id="destination"
                     name="destination"

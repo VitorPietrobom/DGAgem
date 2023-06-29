@@ -10,10 +10,14 @@ import titulo from '../../assets/titulo.png';
 import './home.css';
 import { Stack } from "@mui/system";
 import ProfileDropdown from "../../Components/ProfileDropdown/ProfileDropdown ";
+import { DocumentData, collection, doc, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 export const Home = (): ReactElement => {
+    const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
 
     const [addNewForm, setAddNewForm] = useState(false);
+    const [requests, setRequests] = useState<DocumentData[]>([]);
 
     const handleCloseForm = () => {
         setAddNewForm(false);
@@ -22,6 +26,17 @@ export const Home = (): ReactElement => {
     const addNewFormClick = () => {
         setAddNewForm(true);
       };
+
+    useEffect(() => {
+        const fetchRequests = async () => {
+            const querySnapshot = await getDocs(collection(userRef, "requests"));
+            const requestsData = querySnapshot.docs.map((doc) => doc.data());
+            setRequests(requestsData);
+        };
+      
+        fetchRequests();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
 
     return (
         <div className="home-container">
@@ -38,7 +53,7 @@ export const Home = (): ReactElement => {
                     <img src={titulo} alt='title'/>
                 </div>
                 <div className="profile">
-                    <ProfileDropdown onClick={console.log("Profile Click")}/>
+                    <ProfileDropdown/>
                 </div>
             </Stack>
             
@@ -47,7 +62,7 @@ export const Home = (): ReactElement => {
                 sx={{backgroundColor: "white"}}
                 container
                 spacing={2}
-                columns={{ xs: 12, sm: 6, md: 6, lg: 4 }}
+                columns={{ xs: 4, sm: 6, md: 6, lg: 12 }}
                 justifyContent={'center'}
                 alignItems={'center'}
                 >
@@ -55,19 +70,20 @@ export const Home = (): ReactElement => {
                     <Plus onClick={addNewFormClick}/>
                 </Grid>
                 
-                {Array(3).fill(null).map((_, index) => {
+                {requests.map((request, index) => {
                     return (
                         <Grid
                         item
                         key={index+1}
                         >
                             <TripCard
-                            cardTitle={'New York - EUA'}
+                            cardTitle={request.destination}
                             tripStartDate={'17/07/2023'}
                             tripEndDate={'31/07/2023'}
                             airlineTickets={'Confirmado'}
                             reservations={'Aguardando Resposta'}
                             insurance={'Confirmado'}
+                            savedForLater={request.savedForLater}
                             />
                         </Grid>
                     )

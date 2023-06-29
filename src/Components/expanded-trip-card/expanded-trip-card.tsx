@@ -42,7 +42,7 @@ export const ExpandedTripCard = ({
                         <ArrowBackIcon/>
                     </BackButton>
                     <Typography
-                        sx={{ backgroundColor: "black", position: "absolute", bottom: 8, left: 16}}
+                        sx={{ backgroundColor: "grey", position: "absolute", bottom: 8, left: 16}}
                         gutterBottom
                         variant="h6"
                         component="div"
@@ -50,7 +50,7 @@ export const ExpandedTripCard = ({
                         {`${tripCardInfo.cardTitle}`}
                     </Typography>
                     <Typography
-                        sx={{ backgroundColor: "black", position: "absolute", bottom: 8, right: 16}}
+                        sx={{ backgroundColor: "grey", position: "absolute", bottom: 8, right: 16}}
                         gutterBottom
                         variant="h6"
                         component="div"
