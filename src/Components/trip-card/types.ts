@@ -5,4 +5,5 @@ export interface TripCardProps {
     airlineTickets: string;
     reservations: string;
     insurance: string;
+    savedForLater: Boolean
 }

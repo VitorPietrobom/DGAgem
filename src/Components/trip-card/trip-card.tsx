@@ -19,7 +19,8 @@ export const TripCard = ({
     tripEndDate,
     airlineTickets,
     reservations,
-    insurance
+    insurance,
+    savedForLater
 }: TripCardProps): ReactElement => {
 
     const theme = useTheme();
@@ -44,7 +45,8 @@ export const TripCard = ({
     }
 
     useEffect(() => {
-        getRandomCityPhoto("New York City", getPhoto);
+        getRandomCityPhoto(cardTitle, getPhoto);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -58,7 +60,8 @@ export const TripCard = ({
                     tripEndDate,
                     airlineTickets,
                     reservations,
-                    insurance
+                    insurance,
+                    savedForLater
                 }}
                 photoUrlsObject={photoUrlsObject}
             />
