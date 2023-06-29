@@ -1,15 +1,15 @@
 import { Grid } from "@mui/material";
 import { ReactElement } from "react";
-import { TripCard } from "../../components/trip-card/trip-card";
-import { Plus } from "../../components/Plus/Plus";
+import { TripCard } from "../../Components/trip-card/trip-card";
+import { Plus } from "../../Components/Plus/Plus";
 import { useEffect, useState } from "react";
-import NewTripForm from "../../components/NewTripForm/NewTripForm"
+import NewTripForm from "../../Components/NewTripForm/NewTripForm"
 import { isOpaqueType } from "@babel/types";
 import CssBaseline from '@mui/material/CssBaseline';
 import titulo from '../../assets/titulo.png';
 import './home.css';
 import { Stack } from "@mui/system";
-import ProfileDropdown from "../../components/ProfileDropdown/ProfileDropdown ";
+import ProfileDropdown from "../../Components/ProfileDropdown/ProfileDropdown ";
 
 export const Home = (): ReactElement => {
 
