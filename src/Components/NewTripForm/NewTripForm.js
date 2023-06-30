@@ -61,6 +61,7 @@ const NewTripForm = ({isOpened, onClose, onSend, userUid}) => {
     addFormFirebase();
     console.log(formData);
     onSend(formData, isInternational)
+    onClose()
   };
 
   const handleSaveAndClose = (e) => {

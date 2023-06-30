@@ -3,6 +3,9 @@ import { Backdrop, Box, Card, Container, Divider, Grid, Typography, TextField, s
 import { PrimaryButton } from "../button-styles/primary-button";
 import CloseIcon from '@mui/icons-material/Close';
 import { SecondaryButton } from '../button-styles/secondary-button';
+import { collection, addDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
+
 
 const StyledCard = styled(Card)(({ theme }) => ({
     width: 700,
@@ -11,7 +14,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
     overflow: 'auto',
   }));
 
-const ExpandedForm = ({isOpened, onClose, requiredInformation}) => {
+const ExpandedForm = ({isOpened, onClose, requiredInformation, userUid, initialForm}) => {
 
     const [formData, setFormData] = useState([]) 
 
@@ -26,6 +29,15 @@ const ExpandedForm = ({isOpened, onClose, requiredInformation}) => {
 
       }, [requiredInformation]);
 
+    const addFormFirebase = async () => {
+        try {
+            const userRef = doc(db, "users", userUid);
+            const docRef = await addDoc(collection(userRef, "requests"),Object.assign({formData}, initialForm));
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    };
 
     const handleChange = (sectionIndex, dataIndex, newValue) => {
         setFormData(prevData => {
@@ -37,6 +49,7 @@ const ExpandedForm = ({isOpened, onClose, requiredInformation}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        addFormFirebase();
         console.log(formData);
         onClose()
       };

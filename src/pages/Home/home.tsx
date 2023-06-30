@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { ReactElement } from "react";
+import { ReactElement, SetStateAction } from "react";
 import { TripCard } from "../../Components/trip-card/trip-card";
 import { Plus } from "../../Components/Plus/Plus";
 import { useEffect, useState } from "react";
@@ -29,6 +29,7 @@ export const Home = (): ReactElement => {
 
     const [addNewForm, setAddNewForm] = useState(false);
     const [requiredInformation, setRequiredInformation] = useState([]);
+    const [initialForm, setInitialForm] = useState({});
 
     const [visitExpandedForm, setVisitExpandedForm] = useState(false);
 
@@ -36,6 +37,10 @@ export const Home = (): ReactElement => {
 
     const handleCloseForm = () => {
         setAddNewForm(false);
+    };
+
+    const handleInitialForm = (data: Object) => {
+        setInitialForm(data);
     };
 
     const handleLogout = () => {
@@ -89,8 +94,9 @@ export const Home = (): ReactElement => {
             if (formData.products.includes("insurance")){
                 formsRequired.push(FormPatterns.solicitacaoSeguroViagemAcademicasPais())
             }
-
         }
+
+        setInitialForm(formData);
 
         const joinedArray = formsRequired.reduce((result, currentArray) => {
             console.log(currentArray)
@@ -107,7 +113,7 @@ export const Home = (): ReactElement => {
         }, []);
         
         console.log(joinedArray);
-        setRequiredInformation(joinedArray)
+        setRequiredInformation(joinedArray);
 
         setVisitExpandedForm(true)
       }
@@ -129,7 +135,7 @@ export const Home = (): ReactElement => {
       
         fetchRequests();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [addNewForm]);
+      }, [visitExpandedForm]);
 
     return (
         <div className="home-container">
@@ -145,15 +151,14 @@ export const Home = (): ReactElement => {
                 isOpened={visitExpandedForm}
                 onClose={handleCloseExpandedForm}
                 requiredInformation={requiredInformation}
+                userUid={userUid}
+                initialForm={initialForm}
             />}
         
             <CssBaseline/>
-
                 <div className="profile">
                     <ProfileDropdown onClick={handleLogout} src={userPhoto} name={userName}/>
                 </div>
-
-
                 <img src={titulo} alt='title'/>
 
             <h1>Minhas Viagens</h1>
