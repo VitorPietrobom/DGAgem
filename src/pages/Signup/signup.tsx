@@ -2,9 +2,12 @@ import { ReactElement, useState, ChangeEvent } from "react";
 import './signup.css';
 import Pill from "../../Components/Pill/Pill";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithPopup } from "@firebase/auth";
+import { auth, googleProvider } from "../../firebase";
 
 export const Signup = (): ReactElement => {
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
@@ -23,7 +26,18 @@ export const Signup = (): ReactElement => {
     }
 
     const onClickGoogle = () => {
-        console.log("google")
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            const userUid = result.user.uid;
+            const userPhoto = result.user.photoURL;
+            const userName = result.user.displayName;
+            console.log(userUid)
+            navigate('/', { state: { userUid, userPhoto, userName } });
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
     }
 
     return (

@@ -8,11 +8,11 @@ import { collection, addDoc, doc } from "firebase/firestore";
 import './NewTripForm.css'
 import { db } from '../../firebase';
 
-const NewTripForm = ({isOpened, onClose, onSend}) => {
+const NewTripForm = ({isOpened, onClose, onSend, userUid}) => {
  
     const addFormFirebase = async () => {
         try {
-            const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
+            const userRef = doc(db, "users", userUid);
             const docRef = await addDoc(collection(userRef, "requests"),formData);
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {

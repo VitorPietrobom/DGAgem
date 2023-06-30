@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
 import './ProfileDropdown.css'
+import { Box, Button, Typography, Stack } from '@mui/material';
 
 
-const ProfileDropdown = () => {
-    const src = 'https://media.gettyimages.com/id/1315124180/pt/vetorial/watercolor-turtle.jpg?s=612x612&w=gi&k=20&c=SabWzHjBZRdfFD4PmzZPNgd0VGfCnFZiUKkFEaTnAes='
+const ProfileDropdown = ({onClick, src, name}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
-    };
-
+    }
 
     return (
         <div className='container'>
-            
-            <img onClick={toggleDropdown} src={src} className='image-profile'></img>
+            <img onClick={toggleDropdown} src={src} className='image-profile' alt=''></img>
             {isOpen && (
-                <div className='dropdown-menu'>
-                    <div className='section-dropdown'>Logout</div>
-                </div>
-
+                <Box sx={{backgroundColor:" rgb(37, 37, 37)", width:"200%", marginTop: "5px", borderRadius: "5%", justifyContent: "center", display: "flex"}}>
+                    <Stack direction="column">
+                        <Typography sx={{color:"white", paddingLeft: "10%"}}>{name}</Typography>
+                        <Button variant="text" onClick={onClick}>Logout</Button>
+                    </Stack>
+                </Box>
             )}
         </div>
     );
