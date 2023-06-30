@@ -9,7 +9,7 @@
 /* Media query for screens smaller than 600px */
 @media screen and (max-width: 600px) {
     .button {
-        height: 400px;
+        height: 40px;
         width: 40px;
     }
 }
@@ -32,6 +32,6 @@
 
 .white-plus-icon{
     fill: white;
-    font-size: 300%
+    font-size: 150%
 
 }
