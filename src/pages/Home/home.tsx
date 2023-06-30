@@ -70,15 +70,14 @@ export const Home = (): ReactElement => {
             
         
             <CssBaseline/>
-            <Stack direction="row" spacing={{ xs: 1, sm: 2, md: 4 }}>
-                <div className="logo">
-                    <img src={titulo} alt='title'/>
-                </div>
+
                 <div className="profile">
                     <ProfileDropdown/>
                 </div>
-            </Stack>
-            
+
+
+                <img src={titulo} alt='title'/>
+
             <h1>Minhas Viagens</h1>
             
             <Stack direction="row" spacing={ 0 }>
@@ -115,7 +114,6 @@ export const Home = (): ReactElement => {
                                         <Typography sx={{alignSelf: "center"}}>Salvo para depois</Typography>
                                     </Box>
                                 )}
-                                
                                     <TripCard
                                     cardTitle={request.destination}
                                     tripStartDate={'17/07/2023'}
@@ -125,8 +123,6 @@ export const Home = (): ReactElement => {
                                     insurance={'Confirmado'}
                                     savedForLater={request.savedForLater}
                                     />
-                                    
-
                             </Box>   
                         </Grid>
                     )
