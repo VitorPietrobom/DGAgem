@@ -8,7 +8,7 @@ import { collection, addDoc, doc } from "firebase/firestore";
 import './NewTripForm.css'
 import { db } from '../../firebase';
 
-const NewTripForm = ({isOpened, onClose}) => {
+const NewTripForm = ({isOpened, onClose, onSend}) => {
  
     const addFormFirebase = async () => {
         try {
@@ -60,7 +60,7 @@ const NewTripForm = ({isOpened, onClose}) => {
     e.preventDefault();
     addFormFirebase();
     console.log(formData);
-    onClose()
+    onSend(formData, isInternational)
   };
 
   const handleSaveAndClose = (e) => {

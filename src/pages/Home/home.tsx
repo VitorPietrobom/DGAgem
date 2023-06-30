@@ -56,8 +56,24 @@ export const Home = (): ReactElement => {
 
     const handleCloseForm = () => {
         setAddNewForm(false);
+    };
+    
+    const handleFormSent = (formData: any, isInternational: any) => {
+        /*
+        APLICAR LÓGICA
+        Viagem nacional
+            3 Diárias – Solicitação de Antecipação de Despesa de Viagem (diária)
+            2 Passagens aéreas – Requisição de passagem aérea
+            5 Seguro – Solicitação de Seguro – Viagens Acadêmicas no país
+
+        Viagem Internacional
+            1 Aprovação prévia de despesas – internacional
+            3 Diárias – Solicitação de Antecipação de Despesa de Viagem (diária)
+            2(int) Passagens aéreas – Requisição de passagem aérea (internacional)
+            4 Seguro – Solicitação de Seguro  internacional
+        */
         setVisitExpandedForm(true)
-      };
+      }
     
     const addNewFormClick = () => {
         setAddNewForm(true);
@@ -90,6 +106,7 @@ export const Home = (): ReactElement => {
             {addNewForm && <NewTripForm
                 isOpened={addNewForm}
                 onClose={handleCloseForm}
+                onSend={handleFormSent}
             />}
 
             {visitExpandedForm && <ExpandedForm
