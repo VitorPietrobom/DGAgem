@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
-import { ReactElement } from "react";
+import { ReactElement, SetStateAction } from "react";
 import { TripCard } from "../../Components/trip-card/trip-card";
 import { Plus } from "../../Components/Plus/Plus";
 import { useEffect, useState } from "react";
 import NewTripForm from "../../Components/NewTripForm/NewTripForm"
+import Documents from "../../Components/Documents/Documents"
 import { isOpaqueType } from "@babel/types";
 import CssBaseline from '@mui/material/CssBaseline';
 import titulo from '../../assets/titulo.png';
@@ -12,20 +13,65 @@ import { Stack } from "@mui/system";
 import ProfileDropdown from "../../Components/ProfileDropdown/ProfileDropdown ";
 import { DocumentData, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import ExpandedForm from "../../Components/ExpandedForm/ExpandedForm";
+
+
 
 export const Home = (): ReactElement => {
     const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
 
     const [addNewForm, setAddNewForm] = useState(false);
+    const documents = [
+        {
+            "name": "CNH",
+            "status": "uploaded"
+        },
+        {
+            "name": "Passaporte",
+            "status": "missing"
+        }
+      ];
+
+    const requiredInformation = [
+        {
+            "subSection": "Dados pessoais",
+            "data": [
+                "nome",
+                "email",
+                "tel"
+            ]
+        },
+        {
+            "subSection": "Dados Bancários",
+            "data":[
+              "Banco",
+              "Agência",
+              "Conta"]
+        }
+    ]
+
+    const [visitExpandedForm, setVisitExpandedForm] = useState(false);
+
     const [requests, setRequests] = useState<DocumentData[]>([]);
 
     const handleCloseForm = () => {
         setAddNewForm(false);
+        setVisitExpandedForm(true)
       };
     
     const addNewFormClick = () => {
         setAddNewForm(true);
       };
+
+    const handleCloseExpandedForm = () => {
+        setVisitExpandedForm(false);
+      };
+
+    // const updateDocuments = (updatedDocuments : { name: string; status: string; }[]) => {
+    //     setVisitDocuments(false)
+    //     setDocuments(updatedDocuments)
+    //     console.log("update documents when closing")
+    // }
 
     useEffect(() => {
         const fetchRequests = async () => {
@@ -44,6 +90,13 @@ export const Home = (): ReactElement => {
             {addNewForm && <NewTripForm
                 isOpened={addNewForm}
                 onClose={handleCloseForm}
+            />}
+
+            {visitExpandedForm && <ExpandedForm
+                isOpened={visitExpandedForm}
+                onClose={handleCloseExpandedForm}
+                requiredInformation={requiredInformation}
+                initial_documents={documents}
             />}
             
         

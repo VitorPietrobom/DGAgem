@@ -1,6 +1,6 @@
 import { Box, Grid, Step, StepConnector, StepIconProps, StepLabel, Stepper, stepConnectorClasses, styled } from "@mui/material";
 import { ReactElement } from "react";
-import { InformationStepperProps } from "./types";
+import { InformationStepperProps } from "../../Components/information-stepper/types";
 import { Check } from "@mui/icons-material";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
