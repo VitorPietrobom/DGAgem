@@ -36,6 +36,9 @@ export const Home = (): ReactElement => {
 
     const handleCloseForm = () => {
         setAddNewForm(false);
+        console.log('Here')
+
+
     };
 
     const handleLogout = () => {
@@ -117,7 +120,9 @@ export const Home = (): ReactElement => {
       };
 
     const handleCloseExpandedForm = () => {
+        
         setVisitExpandedForm(false);
+        setAddNewForm(false);
       };
 
     useEffect(() => {
