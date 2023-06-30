@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
-import { Backdrop, Box, Card, Container, Divider, Grid, Typography, TextField} from "@mui/material";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import UploadIcon from '@mui/icons-material/Upload';
+import { Box, Grid, Typography} from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { PrimaryButton } from "../button-styles/primary-button";
-import { OptionsButton } from "../button-styles/options-button";
-import CloseIcon from '@mui/icons-material/Close';
-import { SecondaryButton } from '../button-styles/secondary-button';
-import { collection, addDoc, doc } from "firebase/firestore";
-import { db } from '../../firebase';
 
 const Documents = ({documents, setDocuments}) => {
 
@@ -31,7 +22,7 @@ const Documents = ({documents, setDocuments}) => {
                 justifyContent="flex-start"
                 alignItems="flex-start"
             >
-                {element['status'] == 'missing' && 
+                {element['status'] === 'missing' && 
                 <Box m={1}>
                     <UploadFileIcon 
                     color='error' 
@@ -43,7 +34,7 @@ const Documents = ({documents, setDocuments}) => {
                     onClick={handleAddDocumentClick(element['name'])} />
                 </Box>}
 
-                {element['status'] == 'uploaded' && 
+                {element['status'] === 'uploaded' && 
                 <Box m={1}>
                     <CheckCircleIcon color='success'/>
                 </Box>}

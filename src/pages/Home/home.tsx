@@ -1,11 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { ReactElement } from "react";
 import { TripCard } from "../../Components/trip-card/trip-card";
 import { Plus } from "../../Components/Plus/Plus";
 import { useEffect, useState } from "react";
 import NewTripForm from "../../Components/NewTripForm/NewTripForm"
-import Documents from "../../Components/Documents/Documents"
-import { isOpaqueType } from "@babel/types";
 import CssBaseline from '@mui/material/CssBaseline';
 import titulo from '../../assets/titulo.png';
 import './home.css';
@@ -15,8 +13,8 @@ import { DocumentData, collection, doc, getDocs } from "firebase/firestore";
 import ExpandedForm from "../../Components/ExpandedForm/ExpandedForm";
 import { FormPatterns } from "../../Utils/FormPatterns";
 
-import { db, auth, googleProvider } from "../../firebase";
-import { signInWithPopup, GoogleAuthProvider, getAuth, signOut } from "firebase/auth";
+import { db } from "../../firebase";
+import { getAuth, signOut } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router";
 
 

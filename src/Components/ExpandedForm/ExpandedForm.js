@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Backdrop, Box, Card, Container, Divider, Grid, Typography, TextField, CardContent, styled} from "@mui/material";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import UploadIcon from '@mui/icons-material/Upload';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { Backdrop, Box, Card, Container, Divider, Grid, Typography, TextField, styled} from "@mui/material";
 import { PrimaryButton } from "../button-styles/primary-button";
-import { OptionsButton } from "../button-styles/options-button";
 import CloseIcon from '@mui/icons-material/Close';
-import Documents from '../Documents/Documents';
 import { SecondaryButton } from '../button-styles/secondary-button';
-import { collection, addDoc, doc } from "firebase/firestore";
-import { db } from '../../firebase';
 
 const StyledCard = styled(Card)(({ theme }) => ({
     width: 700,
@@ -32,7 +24,7 @@ const ExpandedForm = ({isOpened, onClose, requiredInformation}) => {
 
           setFormData(convertedObject)
 
-      }, []);
+      }, [requiredInformation]);
 
 
     const handleChange = (sectionIndex, dataIndex, newValue) => {
