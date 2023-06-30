@@ -65,6 +65,7 @@ export const TripCard = ({
                 }}
                 photoUrlsObject={photoUrlsObject}
             />
+            <Box sx={{opacity: savedForLater ? 0.5 : 1}}>
             <CardActionArea
                 onClick={() => setExpandTripCard(true)}
             >
@@ -140,6 +141,8 @@ export const TripCard = ({
                         </CardContent>
                 </Card>
             </CardActionArea>
+            </Box>
+            
         </Box>
     )
 }

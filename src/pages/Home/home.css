@@ -1,7 +1,7 @@
 .home-container {
     display: relative;
     padding: 20px;
-    padding-top: 80px;
+
 }
 
 .profile {
@@ -10,8 +10,3 @@
     right: 30px;
 }
 
-.logo {
-    position: fixed;
-    top: 20px; /* Adjust the top distance as needed */
-    left: 20px;
-}
