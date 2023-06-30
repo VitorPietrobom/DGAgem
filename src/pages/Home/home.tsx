@@ -1,10 +1,9 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { ReactElement } from "react";
 import { TripCard } from "../../Components/trip-card/trip-card";
 import { Plus } from "../../Components/Plus/Plus";
 import { useEffect, useState } from "react";
 import NewTripForm from "../../Components/NewTripForm/NewTripForm"
-import { isOpaqueType } from "@babel/types";
 import CssBaseline from '@mui/material/CssBaseline';
 import titulo from '../../assets/titulo.png';
 import './home.css';
@@ -36,7 +35,7 @@ export const Home = (): ReactElement => {
       
         fetchRequests();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+      }, [addNewForm]);
 
     return (
         <div className="home-container">
@@ -58,18 +57,19 @@ export const Home = (): ReactElement => {
             </Stack>
             
             <h1>Minhas Viagens</h1>
+            
+            <Stack direction="row" spacing={ 0 }>
+            <Box sx={{ width: 50, height: 50 }}>
+                <Plus onClick={addNewFormClick}/>
+            </Box>
+                
+            
             <Grid 
-                sx={{backgroundColor: "white"}}
                 container
                 spacing={2}
-                columns={{ xs: 4, sm: 6, md: 6, lg: 12 }}
-                justifyContent={'center'}
-                alignItems={'center'}
+                justifyContent={'start'}
+                paddingLeft={{xs: 2, md: 10, lg: 15}}
                 >
-                <Grid item key={0} >
-                    <Plus onClick={addNewFormClick}/>
-                </Grid>
-                
                 {requests.map((request, index) => {
                     return (
                         <Grid
@@ -89,6 +89,7 @@ export const Home = (): ReactElement => {
                     )
                 })}
             </Grid>
+            </Stack>
         </div>
     )
 }
