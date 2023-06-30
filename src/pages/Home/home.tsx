@@ -99,7 +99,7 @@ export const Home = (): ReactElement => {
             currentArray.forEach((obj: { subSection: any; data: any; }, index: any) => {
                 const existingIndex = result.findIndex((item: { subSection: any; }) => item.subSection === obj.subSection);
                 if (existingIndex !== -1) {
-                    const uniqueData = [...new Set([...result[existingIndex].data, ...obj.data])];
+                    const uniqueData = Array.from(new Set([...result[existingIndex].data, ...obj.data]));
                     result[existingIndex].data = uniqueData;
                 } else {
                     result.push(obj);
