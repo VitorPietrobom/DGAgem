@@ -159,7 +159,7 @@ export const Home = (): ReactElement => {
             <h1>Minhas Viagens</h1>
             
             <Stack direction="row" spacing={ 0 }>
-            <Box sx={{ width: 50, height: 50 }}>
+            <Box sx={{ width: 50, height: 50, position: "relative", zIndex: 1 }}>
                 <Plus onClick={addNewFormClick}/>
             </Box>
             <Grid 
