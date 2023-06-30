@@ -1,7 +1,8 @@
 import { ReactElement, useState, ChangeEvent } from "react";
-import titulo from '../../assets/titulo.png';
 import './login.css';
 import Pill from "../../Components/Pill/Pill";
+import { FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const Login = (): ReactElement => {
 
@@ -19,32 +20,41 @@ export const Login = (): ReactElement => {
     const onClick = () =>{
         console.log(email)
         console.log(password)
-    } 
+    }
+
+    const onClickGoogle = () => {
+        console.log("Google")
+    }
 
     return (
-        <div className="container">
-            <div className="box">
-                <div className="box-content">
-                    <div className="logo">
-                        <img className="image" src={titulo} alt='title'/>
+        <div className="container-login">
+            <div className="box-login">
+                <div className="box-content-login">
+                    <div className="logo-login">
+                        Inscreva-se
                     </div>
 
-                    <div className="section-container">
-                        <div className="section">
-                            <div className="subtitle">Email</div>
-                            <input className="line" placeholder="email@dac.unicamp.br" onChange={handleEmail}></input>
+                    <div className="section-container-login">
+                        <div className="section-login">
+                            <div className="subtitle-login">Email</div>
+                            <input className="line-login" placeholder="email@dac.unicamp.br" onChange={handleEmail}></input>
                         </div>
 
-                        <div className="section section-2">
-                            <div className="subtitle">Senha</div>
-                            <input className="line" placeholder="********" onChange={handlePassword} type="password"></input>
+                        <div className="section-login section-2-login">
+                            <div className="subtitle-login">Senha</div>
+                            <input className="line-login" placeholder="********" onChange={handlePassword} type="password"></input>
                         </div>
-                        <div className="button">
-                            <Pill label={'Login'} onClick={onClick} isActive={true}></Pill>
+                        <button className="google-login" onClick={onClickGoogle}>
+                            <FaGoogle /> Singup with Google
+                        </button>
+                        <div className="button-login">
+                            <Pill label={'Cadastro'} onClick={onClick} isActive={true}></Pill>
                         </div>
                     </div>
                     
                 </div>
+
+                <div className="login-message">Já possui conta? Faça o <Link to="/login" className="route-login">Cadastre-se</Link></div>
             </div>
         </div>
     )
