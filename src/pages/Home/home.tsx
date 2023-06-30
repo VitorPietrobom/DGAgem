@@ -130,6 +130,7 @@ export const Home = (): ReactElement => {
         const fetchRequests = async () => {
             const querySnapshot = await getDocs(collection(userRef, "requests"));
             const requestsData = querySnapshot.docs.map((doc) => doc.data());
+            console.log(requestsData)
             setRequests(requestsData);
         };
       
@@ -199,8 +200,8 @@ export const Home = (): ReactElement => {
                                 )}
                                     <TripCard
                                     cardTitle={request.destination}
-                                    tripStartDate={'17/07/2023'}
-                                    tripEndDate={'31/07/2023'}
+                                    tripStartDate={request.formData[3].data[1].value}
+                                    tripEndDate={request.formData[3].data[2].value}
                                     airlineTickets={'Confirmado'}
                                     reservations={'Aguardando Resposta'}
                                     insurance={'Confirmado'}
