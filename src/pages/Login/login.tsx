@@ -22,24 +22,24 @@ export const Login = (): ReactElement => {
     } 
 
     return (
-        <div className="container">
-            <div className="box">
-                <div className="box-content">
-                    <div className="logo">
-                        <img className="image" src={titulo} alt='title'/>
+        <div className="container-login">
+            <div className="box-login">
+                <div className="box-content-login">
+                    <div className="logo-login">
+                        <img className="image-login" src={titulo} alt='title'/>
                     </div>
 
-                    <div className="section-container">
-                        <div className="section">
-                            <div className="subtitle">Email</div>
-                            <input className="line" placeholder="email@dac.unicamp.br" onChange={handleEmail}></input>
+                    <div className="section-container-login">
+                        <div className="section-login">
+                            <div className="subtitle-login">Email</div>
+                            <input className="line-login" placeholder="email@dac.unicamp.br" onChange={handleEmail}></input>
                         </div>
 
-                        <div className="section section-2">
-                            <div className="subtitle">Senha</div>
-                            <input className="line" placeholder="********" onChange={handlePassword} type="password"></input>
+                        <div className="section-login section-2-login">
+                            <div className="subtitle-login">Senha</div>
+                            <input className="line-login" placeholder="********" onChange={handlePassword} type="password"></input>
                         </div>
-                        <div className="button">
+                        <div className="button-login">
                             <Pill label={'Login'} onClick={onClick} isActive={true}></Pill>
                         </div>
                     </div>
