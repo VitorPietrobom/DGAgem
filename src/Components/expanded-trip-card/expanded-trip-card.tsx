@@ -28,7 +28,7 @@ export const ExpandedTripCard = ({
                     height: { xs: 600, sm: 550, md: 700, lg: 600},
                 }}
             >
-                <Box sx={{ position: "relative", color: "white" }}>
+                <Box sx={{ position: "relative", color: "white", opacity: 1 }}>
                     <CardMedia
                         component="img"
                         height="200"

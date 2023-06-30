@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { ReactElement } from "react";
 import { TripCard } from "../../Components/trip-card/trip-card";
 import { Plus } from "../../Components/Plus/Plus";
@@ -10,7 +10,9 @@ import './home.css';
 import { Stack } from "@mui/system";
 import ProfileDropdown from "../../Components/ProfileDropdown/ProfileDropdown ";
 import { DocumentData, collection, doc, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, auth, googleProvider } from "../../firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 
 export const Home = (): ReactElement => {
     const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
@@ -24,6 +26,27 @@ export const Home = (): ReactElement => {
     
     const addNewFormClick = () => {
         setAddNewForm(true);
+      };
+
+    const loginTest = () => {
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            
+            
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
       };
 
     useEffect(() => {
@@ -62,8 +85,6 @@ export const Home = (): ReactElement => {
             <Box sx={{ width: 50, height: 50 }}>
                 <Plus onClick={addNewFormClick}/>
             </Box>
-                
-            
             <Grid 
                 container
                 spacing={2}
@@ -76,15 +97,37 @@ export const Home = (): ReactElement => {
                         item
                         key={index+1}
                         >
-                            <TripCard
-                            cardTitle={request.destination}
-                            tripStartDate={'17/07/2023'}
-                            tripEndDate={'31/07/2023'}
-                            airlineTickets={'Confirmado'}
-                            reservations={'Aguardando Resposta'}
-                            insurance={'Confirmado'}
-                            savedForLater={request.savedForLater}
-                            />
+                            <Box sx={{ position: 'relative' }}>
+                                {request.savedForLater && (
+                                    <Box
+                                        sx={{
+                                        position: 'absolute',
+                                        backgroundColor: 'brown',
+                                        color: 'white',
+                                        padding: '4px 8px',
+                                        borderRadius: '4px',
+                                        fontWeight: 'bold',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        width: '100%',
+                                        }}
+                                    >
+                                        <Typography sx={{alignSelf: "center"}}>Salvo para depois</Typography>
+                                    </Box>
+                                )}
+                                
+                                    <TripCard
+                                    cardTitle={request.destination}
+                                    tripStartDate={'17/07/2023'}
+                                    tripEndDate={'31/07/2023'}
+                                    airlineTickets={'Confirmado'}
+                                    reservations={'Aguardando Resposta'}
+                                    insurance={'Confirmado'}
+                                    savedForLater={request.savedForLater}
+                                    />
+                                    
+
+                            </Box>   
                         </Grid>
                     )
                 })}
