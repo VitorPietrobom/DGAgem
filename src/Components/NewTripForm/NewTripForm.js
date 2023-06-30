@@ -21,6 +21,13 @@ const NewTripForm = ({isOpened, onClose}) => {
     };
 
 
+  const [isInternational, setIsInternational] = useState(false)
+
+  const handleCheckbox = () => {
+    console.log(isInternational)
+    setIsInternational((prevState) => !prevState)
+  }
+
   const [formData, setFormData] = useState({
     destination: '',
     products: [],
@@ -89,12 +96,19 @@ const NewTripForm = ({isOpened, onClose}) => {
                 <Container m={2} maxWidth="md" className="form-field">
                 <div style={{ display: 'grid', gap: '16px' }}>
                     <Typography variant="subtitle1">Para onde será sua viagem?</Typography>
-                    <TextField label="Destino" variant="standard" InputProps={{ underline: "true" }}          
-                    type="text"
-                    id="destination"
-                    name="destination"
-                    value={formData.destination}
-                    onChange={handleChange} />
+                    <div style={{display:'flex', alignItems:'flex-end', justifyContent: 'space-between'}}>
+                      <TextField label="Destino" variant="standard" InputProps={{ underline: "true" }}          
+                      type="text"
+                      style={{width: "400px"}}
+                      id="destination"
+                      name="destination"
+                      value={formData.destination}
+                      onChange={handleChange} />
+                      <label style={{display:'flex'}}>
+                        <input type="checkbox" checked={isInternational} onChange={handleCheckbox}></input>
+                        <div>Viagem internacional</div>
+                      </label>
+                    </div>
                 </div>
                 </Container>
                 <Container maxWidth="md" sx={{marginBottom: 5 }}>
