@@ -13,7 +13,7 @@ const NewTripForm = ({isOpened, onClose}) => {
     const addFormFirebase = async () => {
         try {
             const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
-            const docRef = await addDoc(collection(userRef, "requests"),formData);// db.collection("users").doc("57Lx42AzPp8eAn2p8fSE").collection("requests").doc(formData.destination).set();
+            const docRef = await addDoc(collection(userRef, "requests"),formData);
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
             console.error("Error adding document: ", e);
