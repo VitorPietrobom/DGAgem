@@ -1,10 +1,10 @@
-.container{
+.container-login{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.box{
+.box-login{
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -15,46 +15,46 @@
     align-items: center;
 }
 
-.box-content{
+.box-content-login{
     position: absolute;
 }
 
-.logo{
+.logo-login{
     margin-top: 70px;
 }
 
-.section-container{
+.section-container-login{
     margin-top: 70px;
 }
 
 
-.section{
+.section-login{
     position:absolute;
     right: -25%;
 }
 
-.section-2{
+.section-2-login{
     top:150%;
 }
 
-.subtitle{
+.subtitle-login{
     font-weight: bold;
 }
 
-.section-container{
+.section-container-login{
     display: flex;
     
 }
 
-.button{
+.button-login{
     width: 100px;
     height: 50px;
     position: absolute;
-    top: 200px;
+    top: 400px;
     right: -40px;
 }
 
-.line{
+.line-login{
     border: none;
     border-bottom: 1px solid black;
     background-color: rgb(218, 218, 218);
@@ -62,7 +62,7 @@
     margin-top: 10px;
 }
 
-.line:focus{
+.line-login:focus{
     border: none;
 }
 
