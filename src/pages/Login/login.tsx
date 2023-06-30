@@ -2,12 +2,15 @@ import { ReactElement, useState, ChangeEvent } from "react";
 import './login.css';
 import Pill from "../../Components/Pill/Pill";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, googleProvider } from "../../firebase";
+import { signInWithPopup } from "@firebase/auth";
+
 
 export const Login = (): ReactElement => {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
 
     const handleEmail = (event: ChangeEvent<HTMLInputElement>) =>{
         setEmail(event.target.value)
@@ -23,7 +26,18 @@ export const Login = (): ReactElement => {
     }
 
     const onClickGoogle = () => {
-        console.log("Google")
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            const userUid = result.user.uid;
+            const userPhoto = result.user.photoURL;
+            const userName = result.user.displayName;
+            console.log(userUid)
+            navigate('/', { state: { userUid, userPhoto, userName } });
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
     }
 
     return (
@@ -45,16 +59,16 @@ export const Login = (): ReactElement => {
                             <input className="line-login" placeholder="********" onChange={handlePassword} type="password"></input>
                         </div>
                         <button className="google-login" onClick={onClickGoogle}>
-                            <FaGoogle /> Singup with Google
+                            <FaGoogle /> Login with Google
                         </button>
                         <div className="button-login">
-                            <Pill label={'Cadastro'} onClick={onClick} isActive={true}></Pill>
+                            <Pill label={'Login'} onClick={onClick} isActive={true}></Pill>
                         </div>
                     </div>
                     
                 </div>
 
-                <div className="login-message">Já possui conta? Faça o <Link to="/login" className="route-login">Cadastre-se</Link></div>
+                <div className="login-message">Já possui conta? Faça o <Link to="/cadastro" className="route-login">Cadastre-se</Link></div>
             </div>
         </div>
     )

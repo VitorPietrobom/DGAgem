@@ -16,11 +16,18 @@ import ExpandedForm from "../../Components/ExpandedForm/ExpandedForm";
 import { FormPatterns } from "../../Utils/FormPatterns";
 
 import { db, auth, googleProvider } from "../../firebase";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, getAuth, signOut } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router";
 
 
 export const Home = (): ReactElement => {
-    const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const userUid = location.state?.userUid;
+    const userPhoto = location.state?.userPhoto;
+    const userName = location.state?.userName;
+
+    const userRef = doc(db, "users", userUid);
 
     const [addNewForm, setAddNewForm] = useState(false);
     const [requiredInformation, setRequiredInformation] = useState([]);
@@ -31,6 +38,15 @@ export const Home = (): ReactElement => {
 
     const handleCloseForm = () => {
         setAddNewForm(false);
+    };
+
+    const handleLogout = () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            navigate('/login');
+        }).catch((error) => {
+            console.log(error);
+        });
     };
     
     const handleFormSent = (formData: any, isInternational: any) => {
@@ -106,27 +122,6 @@ export const Home = (): ReactElement => {
         setVisitExpandedForm(false);
       };
 
-    const loginTest = () => {
-        signInWithPopup(auth, googleProvider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            
-            
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
-      };
-
     useEffect(() => {
         const fetchRequests = async () => {
             const querySnapshot = await getDocs(collection(userRef, "requests"));
@@ -145,6 +140,7 @@ export const Home = (): ReactElement => {
                 isOpened={addNewForm}
                 onClose={handleCloseForm}
                 onSend={handleFormSent}
+                userUid={userUid}
             />}
 
             {visitExpandedForm && <ExpandedForm
@@ -152,12 +148,11 @@ export const Home = (): ReactElement => {
                 onClose={handleCloseExpandedForm}
                 requiredInformation={requiredInformation}
             />}
-            
         
             <CssBaseline/>
 
                 <div className="profile">
-                    <ProfileDropdown/>
+                    <ProfileDropdown onClick={handleLogout} src={userPhoto} name={userName}/>
                 </div>
 
 
