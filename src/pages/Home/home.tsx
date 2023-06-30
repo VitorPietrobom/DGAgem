@@ -13,6 +13,7 @@ import { Stack } from "@mui/system";
 import ProfileDropdown from "../../Components/ProfileDropdown/ProfileDropdown ";
 import { DocumentData, collection, doc, getDocs } from "firebase/firestore";
 import ExpandedForm from "../../Components/ExpandedForm/ExpandedForm";
+import { FormPatterns } from "../../Utils/FormPatterns";
 
 import { db, auth, googleProvider } from "../../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -22,34 +23,7 @@ export const Home = (): ReactElement => {
     const userRef = doc(db, "users", "57Lx42AzPp8eAn2p8fSE");
 
     const [addNewForm, setAddNewForm] = useState(false);
-    const documents = [
-        {
-            "name": "CNH",
-            "status": "uploaded"
-        },
-        {
-            "name": "Passaporte",
-            "status": "missing"
-        }
-      ];
-
-    const requiredInformation = [
-        {
-            "subSection": "Dados pessoais",
-            "data": [
-                "nome",
-                "email",
-                "tel"
-            ]
-        },
-        {
-            "subSection": "Dados Bancários",
-            "data":[
-              "Banco",
-              "Agência",
-              "Conta"]
-        }
-    ]
+    const [requiredInformation, setRequiredInformation] = useState([]);
 
     const [visitExpandedForm, setVisitExpandedForm] = useState(false);
 
@@ -72,7 +46,55 @@ export const Home = (): ReactElement => {
             3 Diárias – Solicitação de Antecipação de Despesa de Viagem (diária)
             2(int) Passagens aéreas – Requisição de passagem aérea (internacional)
             4 Seguro – Solicitação de Seguro  internacional
+
+        OPÇOES: DIARIA, PASSAGEM E SEGURO
         */
+        const formsRequired: any[] = [];
+        if (isInternational){
+
+            formsRequired.push(FormPatterns.aprovaçãoPréviaDeDespesas())
+
+            if (formData.products.includes("airTicket")){
+                formsRequired.push(FormPatterns.requisicaoPassagemAereaInternacional())
+            }
+            if (formData.products.includes("hotelDaily")){
+                formsRequired.push(FormPatterns.solicitacaoAntecipacaoDespesaViagem())
+            }
+            if (formData.products.includes("insurance")){
+                formsRequired.push(FormPatterns.solicitacaoSeguroViagemInternacional())
+            }
+
+        } else {    
+            
+            if (formData.products.includes("airTicket")){
+                formsRequired.push(FormPatterns.requisicaoPassagemAereaNacional())
+            }
+            if (formData.products.includes("hotelDaily")){
+                formsRequired.push(FormPatterns.solicitacaoAntecipacaoDespesaViagem())
+            }
+            if (formData.products.includes("insurance")){
+                formsRequired.push(FormPatterns.solicitacaoSeguroViagemAcademicasPais())
+            }
+
+        }
+
+        const joinedArray = formsRequired.reduce((result, currentArray) => {
+            console.log(currentArray)
+            currentArray.forEach((obj: { subSection: any; data: any; }, index: any) => {
+                const existingIndex = result.findIndex((item: { subSection: any; }) => item.subSection === obj.subSection);
+                if (existingIndex !== -1) {
+                    const uniqueData = [...new Set([...result[existingIndex].data, ...obj.data])];
+                    result[existingIndex].data = uniqueData;
+                } else {
+                    result.push(obj);
+                }
+            });
+            return result;
+        }, []);
+        
+        console.log(joinedArray);
+        setRequiredInformation(joinedArray)
+
         setVisitExpandedForm(true)
       }
     
@@ -129,7 +151,6 @@ export const Home = (): ReactElement => {
                 isOpened={visitExpandedForm}
                 onClose={handleCloseExpandedForm}
                 requiredInformation={requiredInformation}
-                initial_documents={documents}
             />}
             
         

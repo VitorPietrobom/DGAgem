@@ -19,10 +19,9 @@ const StyledCard = styled(Card)(({ theme }) => ({
     overflow: 'auto',
   }));
 
-const ExpandedForm = ({isOpened, onClose, requiredInformation, initial_documents}) => {
+const ExpandedForm = ({isOpened, onClose, requiredInformation}) => {
 
     const [formData, setFormData] = useState([]) 
-    const [documents, setDocuments] = useState(initial_documents)
 
     useEffect(() => {
 
@@ -100,17 +99,7 @@ const ExpandedForm = ({isOpened, onClose, requiredInformation, initial_documents
                                 ))}
                             </Grid>
                         ))}
-                        
-                        <Grid item xs={12} sx={{ marginLeft: '20px' }}>
-        
-                                <Box m={1} mt={3}>
-                                    <Typography variant="h5">Documentos</Typography>
-                                </Box>
-                                <Container maxWidth="md">
-                                    <Divider />
-                                </Container>
-                                <Documents documents={documents} setDocuments={setDocuments}/>
-                            </Grid>
+                
                         
                         <Grid item xs={12} mb={3}>
                             <Container maxWidth="md">
