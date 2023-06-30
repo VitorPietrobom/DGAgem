@@ -55,7 +55,7 @@ export const Login = (): ReactElement => {
             <div className="box-login">
                 <div className="box-content-login">
                     <div className="logo-login">
-                        Inscreva-se
+                        Autenticar
                     </div>
 
                     <div className="section-container-login">
@@ -78,7 +78,7 @@ export const Login = (): ReactElement => {
                     
                 </div>
 
-                <div className="login-message">Já possui conta? Faça o <Link to="/cadastro" className="route-login">Cadastre-se</Link></div>
+                <div className="login-message">Não possui conta? Faça o <Link to="/cadastro" className="route-login">Cadastro</Link></div>
             </div>
         </div>
     )
