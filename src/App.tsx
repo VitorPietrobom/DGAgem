@@ -4,13 +4,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './pages/Login/login';
 import { Signup } from './pages/Signup/signup';
 
+
 export const DGAViagensApp = (): ReactElement => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/cadastro" element={<Signup/>} />
+      <Route path="/" element={<Login/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/cadastro" element={<Signup/>} />
       </Routes>
     </Router>
   )

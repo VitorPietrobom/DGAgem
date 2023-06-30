@@ -4,7 +4,7 @@ import Pill from "../../Components/Pill/Pill";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../../firebase";
-import { signInWithPopup } from "@firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth";
 
 
 export const Login = (): ReactElement => {
@@ -21,8 +21,19 @@ export const Login = (): ReactElement => {
     }
     
     const onClick = () =>{
-        console.log(email)
-        console.log(password)
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            const userUid = result.user.uid;
+            const userPhoto = result.user.photoURL;
+            const userName = result.user.displayName;
+            navigate('/home', { state: { userUid, userPhoto, userName } });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
     }
 
     const onClickGoogle = () => {
@@ -31,8 +42,7 @@ export const Login = (): ReactElement => {
             const userUid = result.user.uid;
             const userPhoto = result.user.photoURL;
             const userName = result.user.displayName;
-            console.log(userUid)
-            navigate('/', { state: { userUid, userPhoto, userName } });
+            navigate('/home', { state: { userUid, userPhoto, userName } });
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;

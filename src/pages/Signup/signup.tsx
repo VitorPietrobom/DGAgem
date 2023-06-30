@@ -3,7 +3,7 @@ import './signup.css';
 import Pill from "../../Components/Pill/Pill";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithPopup } from "@firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithPopup } from "@firebase/auth";
 import { auth, googleProvider } from "../../firebase";
 
 export const Signup = (): ReactElement => {
@@ -21,8 +21,19 @@ export const Signup = (): ReactElement => {
     }
     
     const onClick = () =>{
-        console.log(email)
-        console.log(password)
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            const userUid = result.user.uid;
+            const userPhoto = result.user.photoURL;
+            const userName = result.user.displayName;
+            navigate('/home', { state: { userUid, userPhoto, userName } });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
     }
 
     const onClickGoogle = () => {
@@ -31,8 +42,7 @@ export const Signup = (): ReactElement => {
             const userUid = result.user.uid;
             const userPhoto = result.user.photoURL;
             const userName = result.user.displayName;
-            console.log(userUid)
-            navigate('/', { state: { userUid, userPhoto, userName } });
+            navigate('/home', { state: { userUid, userPhoto, userName } });
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
