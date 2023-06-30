@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography, Grid, CardActionArea, useTheme } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Grid, CardActionArea, useTheme, Box } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import { getRandomCityPhoto } from "../../apis/unsplash/unsplash-api";
 import { PhotoUrls } from "../../apis/unsplash/types";
@@ -50,7 +50,7 @@ export const TripCard = ({
     }, [])
 
     return (
-        <>
+        <Box>
             <ExpandedTripCard
                 isOpened={expandTripCard}
                 onCLose={() => setExpandTripCard(false)}
@@ -140,6 +140,6 @@ export const TripCard = ({
                         </CardContent>
                 </Card>
             </CardActionArea>
-        </>
+        </Box>
     )
 }

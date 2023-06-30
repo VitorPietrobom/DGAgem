@@ -24,8 +24,8 @@ export const ExpandedTripCard = ({
         <Backdrop open={isOpened} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Card
                 sx={{
-                    width: 1000,
-                    height: 700,
+                    width: { xs: 500, sm: 600, md: 800, lg: 800},
+                    height: { xs: 600, sm: 550, md: 700, lg: 600},
                 }}
             >
                 <Box sx={{ position: "relative", color: "white" }}>

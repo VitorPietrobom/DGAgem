@@ -13,6 +13,7 @@ const TravelSummary = ()=>{
     
     return(
         <div className='container'>
+            // eslint-disable-next-line jsx-a11y/alt-text
             <img src={travelInfo.image} className='background-image'></img>
             
             <div className='text-section'>
