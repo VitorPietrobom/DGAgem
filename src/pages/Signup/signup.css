@@ -1,10 +1,10 @@
-.container-login{
+.container-signup{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.box-login{
+.box-signup{
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -15,40 +15,40 @@
     align-items: center;
 }
 
-.box-content-login{
+.box-content-signup{
     position: absolute;
 }
 
-.logo-login{
+.logo-signup{
     margin-top: 70px;
     font-size: 375%;
     font-weight: bold;
 }
 
-.section-container-login{
+.section-container-signup{
     margin-top: 70px;
 }
 
 
-.section-login{
+.section-signup{
     position:absolute;
     right: -25%;
 }
 
-.section-2-login{
+.section-2-signup{
     top:150%;
 }
 
-.subtitle-login{
+.subtitle-signup{
     font-weight: bold;
 }
 
-.section-container-login{
+.section-container-signup{
     display: flex;
     
 }
 
-.button-login{
+.button-signup{
     width: 100px;
     height: 50px;
     position: absolute;
@@ -56,7 +56,7 @@
     right: -80px;
 }
 
-.line-login{
+.line-signup{
     border: none;
     border-bottom: 1px solid black;
     background-color: rgb(218, 218, 218);
@@ -64,20 +64,20 @@
     margin-top: 10px;
 }
 
-.line-login:focus{
+.line-signup:focus{
     border: none;
 }
 
-.route-login{
+.route-signup{
     color: rgb(187, 0, 0)
 }
 
-.login-message{
+.signup-message{
     position: relative;
     bottom: -90%;
 }
 
-.google-login {
+.google-signup {
     background: rgb(35, 35, 223);
     color: white;
     font-weight: bold;
@@ -87,5 +87,5 @@
     justify-content: center;
     align-items: center;
     bottom: -242px;
-    left: -110px;
+    left: -90px;
 }

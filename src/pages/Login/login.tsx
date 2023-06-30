@@ -1,7 +1,8 @@
 import { ReactElement, useState, ChangeEvent } from "react";
-import titulo from '../../assets/titulo.png';
 import './login.css';
 import Pill from "../../Components/Pill/Pill";
+import { FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const Login = (): ReactElement => {
 
@@ -19,14 +20,18 @@ export const Login = (): ReactElement => {
     const onClick = () =>{
         console.log(email)
         console.log(password)
-    } 
+    }
+
+    const onClickGoogle = () => {
+        console.log("Google")
+    }
 
     return (
         <div className="container-login">
             <div className="box-login">
                 <div className="box-content-login">
                     <div className="logo-login">
-                        <img className="image-login" src={titulo} alt='title'/>
+                        Inscreva-se
                     </div>
 
                     <div className="section-container-login">
@@ -39,12 +44,17 @@ export const Login = (): ReactElement => {
                             <div className="subtitle-login">Senha</div>
                             <input className="line-login" placeholder="********" onChange={handlePassword} type="password"></input>
                         </div>
+                        <button className="google-login" onClick={onClickGoogle}>
+                            <FaGoogle /> Singup with Google
+                        </button>
                         <div className="button-login">
-                            <Pill label={'Login'} onClick={onClick} isActive={true}></Pill>
+                            <Pill label={'Cadastro'} onClick={onClick} isActive={true}></Pill>
                         </div>
                     </div>
                     
                 </div>
+
+                <div className="login-message">Já possui conta? Faça o <Link to="/login" className="route-login">Cadastre-se</Link></div>
             </div>
         </div>
     )
