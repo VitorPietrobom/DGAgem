@@ -32,6 +32,9 @@ const NewTripForm = ({isOpened, onClose, onSend, userUid}) => {
     destination: '',
     products: [],
     savedForLater: false,
+    statusPassagem: 'Pendente',
+    statusDiaria: 'Pendente',
+    statusSeguro: 'Pendente',
   });
 
   const handleChange = (e) => {

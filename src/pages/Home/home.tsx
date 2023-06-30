@@ -202,9 +202,9 @@ export const Home = (): ReactElement => {
                                     cardTitle={request.destination}
                                     tripStartDate={request.formData[3].data[1].value}
                                     tripEndDate={request.formData[3].data[2].value}
-                                    airlineTickets={'Confirmado'}
-                                    reservations={'Aguardando Resposta'}
-                                    insurance={'Confirmado'}
+                                    airlineTickets={request.statusPassagem}
+                                    reservations={request.statusDiaria}
+                                    insurance={request.statusSeguro}
                                     savedForLater={request.savedForLater}
                                     />
                             </Box>   
